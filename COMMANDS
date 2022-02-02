@@ -1,0 +1,92 @@
+SQL> CREATE TABLE company2(ID integer, Name varchar(15),PD integer,ABS integer);
+
+Table created.
+
+SQL> INSERT INTO company2 VALUES(01, 'Sandeep',20,5);
+
+1 row created.
+
+SQL> INSERT INTO company2 VALUES(02, 'Vignesh',22,3);
+
+1 row created.
+
+SQL> INSERT INTO company2 VALUES(03, 'Tarun',23,2);
+
+1 row created.
+
+SQL> INSERT INTO company2 VALUES(04, 'Priya',25,0);
+
+1 row created.
+
+SQL> select *from company2;
+
+        ID NAME                    PD        ABS                                
+---------- --------------- ---------- ----------                                
+         1 Sandeep                 20         5                                
+         2 Vignesh                 22         3                                
+         3 Tarun                   23         2                                
+         4 Priya                   25         0                                
+
+SQL> update company2 set Name ='Nikhil' where ID=1;
+
+1 row updated.
+
+SQL> select *from company2;
+
+        ID NAME                    PD        ABS                                
+---------- ---------------  ---------- ----------                                
+         1 Nikhil                 20         5                                
+         2 Vignesh                22         3                                
+         3 Tarun                  23         2                                
+         4 Priya                  25         0                                
+
+SQL> commit;
+
+Commit complete.
+
+SQL> INSERT INTO company2 VALUES(05, 'Sai',21,4);
+
+1 row created.
+
+SQL> savepoint A;
+
+Savepoint created.
+
+SQL> INSERT INTO company2 VALUES(06, 'Sasi',19,6);
+
+1 row created.
+
+SQL> Savepoint B;
+
+Savepoint created.
+
+SQL> select *from company2;
+
+        ID NAME                    PD        ABS                                
+---------- --------------- ---------- ----------                                
+         1 Nikhil                  20        5                                
+         2 Vignesh                 22        3                                
+         3 Tarun                   23        2                                
+         4 Priya                   25        0                                
+         5 Sai                     21        4                                
+         6 Sasi                    19        6                                
+
+6 rows selected.
+
+SQL> rollback to A;
+
+Rollback complete.
+
+SQL> select *from company2;
+
+        ID NAME                    PD        ABS                                
+---------- --------------- ---------- ----------                                
+         1 Nikhil                 20         5                                
+         2 Vignesh                22         3                                
+         3 Tarun                  23         2                                
+         4 Priya                  25         0                                
+         5 Sai                    21         4                                
+
+
+
+SQL> spool off
